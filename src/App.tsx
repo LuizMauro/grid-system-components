@@ -1,11 +1,9 @@
-import { Col } from "./grid-system-components/Col";
-import { Row } from "./grid-system-components/Row";
-import { Container } from "./grid-system-components/Container";
+import { Col, Container, Row } from "./grid-system-components";
 
 function App() {
   return (
     <div className="App">
-      <Container style={{ backgroundColor: "blue" }}>
+      <Container fluid style={{ backgroundColor: "blue" }}>
         <Row
           gridGap={20}
           style={{

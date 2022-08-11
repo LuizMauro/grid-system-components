@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/styles.css";
+import { WindowResize } from "../@utils/WindowResize";
 
 interface IProps {
   children: React.ReactNode;
@@ -8,8 +8,6 @@ interface IProps {
 }
 
 const Container: React.FC<IProps> = ({ children, fluid, style }) => {
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-
   const getWidth = (minWidth: number) => {
     if (fluid) {
       return "100%";
@@ -26,20 +24,10 @@ const Container: React.FC<IProps> = ({ children, fluid, style }) => {
     }
   };
 
-  let resizeWindow = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  React.useEffect(() => {
-    resizeWindow();
-    window.addEventListener("resize", resizeWindow);
-    return () => window.removeEventListener("resize", resizeWindow);
-  }, []);
-
   return (
     <div
       style={{
-        width: getWidth(windowWidth),
+        width: getWidth(WindowResize()),
         marginLeft: "auto",
         marginRight: "auto",
         paddingLeft: 15,

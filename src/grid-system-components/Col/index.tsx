@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/styles.css";
+import { WindowResize } from "../@utils/WindowResize";
 
 interface IProps {
   xs?: string | number;
@@ -15,8 +15,6 @@ interface IGridColumnStyle {
 }
 
 const Col: React.FC<IProps> = ({ lg, md, xs, sm, children, ...props }) => {
-  const [windowWidth, setWindowWidth] = React.useState(0);
-
   const builderColStyles = (value: string | number): IGridColumnStyle => {
     return { gridColumn: `span ${value}` };
   };
@@ -39,17 +37,8 @@ const Col: React.FC<IProps> = ({ lg, md, xs, sm, children, ...props }) => {
     return style;
   };
 
-  React.useLayoutEffect(() => {
-    function updateSize() {
-      setWindowWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-
   return (
-    <div style={{ ...builderStyle(windowWidth), ...props.style }}>
+    <div style={{ ...builderStyle(WindowResize()), ...props.style }}>
       {children}
     </div>
   );

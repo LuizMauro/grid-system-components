@@ -1,7 +1,5 @@
 import React from "react";
-import "../styles/styles.css";
 
-// import { Container } from './styles';
 interface IProps {
   children: React.ReactNode;
   columns?: string | number;
